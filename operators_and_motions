@@ -1,0 +1,164 @@
+# Text object
+[number]<command>[text object]
+command: d(elete), c(hange), y(ank), v(isual)
+Text object: w, s, p, t(tag)->在html<>abc<>  <a href='#'>text</a>
+使用i: in the, a: arount the
+diw: delete in the word
+daw: delete around the word (include empty space)
+ci" -> change in ""
+vi" -> select in ""
+ci( -> change in ()
+ca" -> change in "",remove "" as well
+
+
+# 复制，黏贴 ，删除
+
+## 删除, 剪切 (d<T>,x)
+d 是删除的意思，通常搭配一个字符 ( 删除范围 ) 实现删除功能
+
+- `dd`                       " 删除当前行，并将删除的内容保存到 Vim 剪贴板
+- `d<X>`                     " 删除指定内容并保存到 Vim 剪贴板
+- `ndd`                      " 向下删除 n 行
+- `d1G`, `dgg`               " 删除第一行到当前行的数据
+- `dG`                       " 删除当前行到最后一行的数据
+- `d$`                       " 删除当前字符到行尾
+- `d0`                       " 从行首删除到当前字符
+- `dt)`                      " 删除括号里面的  : delete to ‘)’,可以扩展到更多的情形
+- `dw`                       " 删除一个单词
+- `dnw`                      " 删除 n 个单词，
+- `dfa`                      " 删除光标处到下一个 a 的字符处（ fa 定位光标到 a 处 ）
+- `dnfa`                     " 删除光标处到第 n 个 a 的字符处
+- `D`                        " 删除光标坐在位置到行尾，在normal模式
+
+VIM 删除多行文本
+- `:n1,n2d`                  " n1 和 n2 指的是起始行号和结束行号，d 是删除关键字
+
+#### 删除字符操作和替换
+- `x`                        " 向后删除一个字符, 相当于 insert 模式下的 `Delete`
+- `nx`                       " 向后删除 n 个字符
+- `X`                        " 向前删除一个字符，相当于 insert 模式下的 `Backspace`
+- `nX`                       " 向前删除 n 个字符
+- `r`                        " 替换掉光标当前所在的字符
+- `R`                        " 替换掉从光标开始以后的所有字符，除非 <ESC > 退出，或者 jj （代替 <ESC> 上文有提到）退出
+
+## 复制 (并保存到 Vim 剪贴板)
+y 是复制的意思，通常搭配一个字符（复制范围）实现复制的功能
+
+- `yy`                      " 复制当前行到 Vim 剪贴板, 复制的数据只在当前缓冲区有效，
+                              退出文件再进来就不在生效，后面的章节我们会讨论怎样跨文件复制粘贴
+- `y<X>`                    " 复制指定内容到 Vim 剪贴板
+- `nyy`                     " 从当前行开始复制 n 行
+- `y1G`, `ygg`              " 从第一行复制到当前行
+- `yG`                      " 从当前行复制到最后一行
+- `y0`                      " 从行首复制到当前字符
+- `y$`                      " 从当前字符复制到行尾
+- `yw`                      " 复制一个单词，还有 ynw
+- `yfa`                     " 复制光标到下一个 a 的字符处,还有ynfa
+
+## 粘贴 (并保存到 Vim 剪贴板)
+- `p`                       " 在当前位置后粘贴
+- `P`                       " 在当前位置前粘贴
+
+_说明： `<X>` 部分是对操作内容的描述，如果要删除一个单词，就输入 `dw` 或者 `de`，要复制当前
+位置到行尾的内容，就输入 `y$`，要删除后面 3 个字符并插入，就输入 `c3l` 诸如此类。_
+粘贴:
+1)在normal模式下使用系统剪贴板
+"+y     " 复制本文到系统剪切板
+"+p     " 粘贴系统剪切板到 Vim（不会影响文本格式
+Vim的寄存器使用:reg查看，支持copy到多个寄存器
+vim --version 确认+clipboard,如果不支持可以使用 brew install vim
+可能存在link error使用fix 可能要取消:admn
+sudo chown $USER:admin /usr/local/share/man/de/man1
+brew link inkscape
+同时.vimrc里面设置 set clipboard=unnamed
+vim寄存器视频:https://www.youtube.com/watch?v=-CiKaXiuEws&list=PLRoSWxRYgjmUeMM37yElFQBLNkEed3S1Q&index=33
+copy to reg a: use `"ayy`
+2)在insert模式下ctrl+v,格式问题可以通过:set paste然后再进行粘贴
+
+## 撤销操作和恢复
+- `u`                       " 撤销
+- `Ctrl-r`                  " 重做  
+
+在我们进行修改之后, 可以按 u 进行撤销上一次的更改
+上一次更改: 基本上就是2个**常规模式**之间的内容变更
+所以我们在修改东西的时候可以尽量一直保持在插入模式下, 如果我们先全部重来, 只需要按 <Esc>u 即可
+
+A - 光标定位到当前行末尾, 状态切换为插入模式
+<Esc>o - 换行并切换为插入模式
+u - 撤销上一次变更
+<C-r> - u 的后悔药
+U - 撤销最后一行的更改; 按2次就是回到原始状态
+
+## 大小写转换
+- `~`                       " 将光标下的字母改变大小写 和`g~`相同
+- `3~`                      " 将光标位置开始的3个字母改变其大小写
+- `g~~`                     " 改变当前行字母的大小写
+- `gUU`                     " 将当前行的字母改成大写
+- `guu`                     " 将当前行的字母全改成小写
+- `3gUU`                    " 将从光标开始到下面3行字母改成大写
+- `gUw`                     " 将光标下的单词改成大写。
+- `guw`                     " 将光标下的单词改成小写
+
+## VIM 的重复命令
+- `.`                       " 重复最后一个命令            
+- `N<command>`              " 重复某个命令N次, 重复某个命令 n 次, 10p复制 10 次，10dd 删除十次
+
+## 合并
+- `J`                       " 将当前行与下一行合并
+
+
+# 增加 插入 (Insert Mode)
+
+## 常用启动录入文本的键盘字符(Normal -> Insert)
+- `i`                        " 当前字符前插入 (insert)
+- `a`                        " 当前字符后插入 (append)
+- `I`                        " 行首插入
+- `A`                        " 行尾插入
+- `o`                        " 在下一行插入 (open a new line below)
+- `O`                        " 在上一行插入
+- `s`                        " 删除光标所在的一个字符, 光标还在当行 进入insert mode
+- `S`                        " 删除光标所在的一行，光标还在当行，不同于dd 进入insert mode
+
+Insert mode 修改命令
+- `Ctrl + h`                 " 删除上一个字符
+- `Ctrl + w`                 " 删除上一个单词
+- `Ctrl + u`                 " 删除当前行
+
+## 修改 ( r(replace), c(change), s(substitue), c<X>: ct", ct" )
+- `c<X>`                     " 删除指定内容并保存到 Vim 剪贴板，同时进入 insert 模式
+- `cw`                       " 删除光标所在的单词，进入insert mode
+- `ct)`                      " 删除光标所在的字符直到)
+- `cj`                       " 删除当前行和下一行，并进入 insert 模式
+- `c10j`                     " 删除当前行和下面 10 行，并进入 insert 模式
+- `ce`                       " 删除光标到当前单词结尾，并进入 insert 模式
+- `cw`                       " 删除光标到当前单词结尾，并进入 insert 模式
+- `cb`                       " 删除光标到当前单词开始，并进入 insert 模式
+- `ciw`                      " 删除当前单词，并进入 insert 模式
+- `ci(`                      " 删除光标所在括号的内容，并进入 insert 模式，适用于 {[(<`'" 等成对的符号
+- `cip`                      " 删除当前段落，并进入 insert 模式
+- `ct,`                      " 删除到下一个逗号，并进入 insert 模式，逗号可以换成所有可输入字符
+- `cc`                       " 删除当前行，并进入插入模式 与`S`等价
+- `C`                        " c$	删除光标到行末, 进入插入模式
+
+## s删除字符或者一行
+- `s`                        " 删除单个字符，进入insert模式
+- `S`                        " 删除整行，进入insert模式
+
+## 
+- `ctrl + a`                 " increase the number by 1 in the same line不需要在数字上
+- `ctrl + x`                 " decrease the number by 1 in the same line不需要在数字上
+
+示例文案:
+
+.blog, .news { background-image: url(/sprite.png); }
+.blog { background-position: 0px 0px }
+最后增加一行:
+
+.news { background-position: -180px 0px }
+
+Keystrokes	Buffer Contents
+180<C-x>	.blog, .news { background-image: url(/sprite.png); }
+
+<C-x> - 数字相减
+<C-a> - 数字相加 (容易和 tmux 快捷键冲突)
+<C-r>={expression} - 计算 {表达式} 的值 (加减乘除表达式)
