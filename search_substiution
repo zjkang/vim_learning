@@ -1,0 +1,64 @@
+# 查找 替换
+
+## 文档内查找
+- `*`                        " 向后查找光标当前所在单词
+- `#`                        " 向前查找光标当前所在单词
+
+- `/<search>`                " 向后查找指定字符串
+- `?<search>`                " 向前查找指定字符串
+- `n`                        " 继续查找下一个
+- `N`                        " 继续查找上一个
+
+VIM 处理大小写的区分
+- `:set ic`                  " 编辑器将不会区分大小写，如果你进行该设置之后，
+                               进行关键字查询如 /zempty 如果文本中有 Zempty ,zEmpty,....,
+                               只要是字符相同不会区分大小写都会进行匹配。
+- `:set noic`                " 区分大小写的查询
+
+
+## 替换 
+:{作用范围}s/{目标}/{替换}/{替换的标志}
+作用范围分为当前行、全文、选区等等
+
+- `:s/zempty/handsome/g`         " 将会把当前光标所在行的 zempty 替换成 handsome
+- `:%s/zempty/handsome/g`        " 将会把全文中的 zempty 替换成 handsome
+- `:n1,n2s/zempty/handsome/g`    " 替换掉 n1 到 n2 的所有 zempty 为 handsome
+- `:'<,'>s/zempty/handsome/g`    " 选区，在可视模式下选择区域后输入 : ，VIM 会自动补全为 :'<,'>
+
+空替换标志表示只替换从光标位置开始，目标的第一次出现
+:s/zempty/handsome
+作用于当前行，从光标处开始查找替换，仅仅替换第一次匹配 zempty 的地方为handsome 。
+:%s/zempty/handsome
+替换掉文件中所有行第一次出现 zempty 的地方为 handsome
+
+i 表示大小写不敏感查找，I 表示大小写敏感：
+:%s/zempty/handsome/i
+替换掉所有行第一个出现 zempty (不区分大小写) 为 handsome 。
+:%s/zempty/handsome/gi
+替换掉所有行出现 zempty (不区分大小写) 为 handsome 。
+
+c 表示需要确认，例如全局查找"zempty"替换为"handsome"并且需要确认：
+:%s/zempty/handsome/gc
+
+- `:%s/<search>/<replace>/`  " 查找 search 内容并替换为 replace 内容
+- `:n1,n2s/word1/word2/g`    " n1, n2 表示数字，替换 n1 行到 n2 行的单词
+- `:1,$ s/word1/word2/g`     " 全文替换，也可以写成 :%s/word1/word2/g
+- `:1,$ s/word1/word2/gc`    " 全文替换，并出现确认提示
+
+(:[range] s[ubstitute]/{pattern}/{string}/[flags])
+%全部, g全局执行,c确认,n匹配次数
+pattern: 正则表达式 \< 开始, \>结尾
+:n1,n2s/word1/word2/g   " n1, n2 表示数字，替换 n1 行到 n2 行的单词
+:1,$s/word1/word2/g     " 全文替换，也可以写成 :%s/word1/word2/g
+:1,$s/word1/word2/gc    " 全文替换，并出现确认提示
+
+cgn配合/search使用做批量修改
+`/[word]`, then `cgn`对于候选目标进行修改, `<Esc>`, `n`进行修改下个,然后可以使用`.`进行重复修改
+https://macplay.github.io/posts/vim-bu-xu-yao-duo-guang-biao-bian-ji-gong-neng/
+
+%s/\CWord/XXX/g 就是区分大小写；输入：%s/\cWord/XXX/g是不不区分大小写
+   模式                    匹配    
+   \Cword                   word
+   \CWord                   Word
+   \cword                   word，Word，WORD，WoRd，等。
+   \cWord                   word，Word，WORD，WoRd，等。
