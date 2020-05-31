@@ -50,18 +50,19 @@
 - `'{a-zA-Z}`                " 跳转到标签位置
 - `:marks`                   " 查看标签
 
-'       跳转前的位置 
-"       最后编辑的位置 返回
-[       最后修改的位置的开头 
-]       最后修改的位置的结尾 
+'       跳转前的位置       <br>
+"       最后编辑的位置 返回 <br>
+[       最后修改的位置的开头 <br>
+]       最后修改的位置的结尾 <br>
 补充：如果想要删除marks，可用命令delmarks + markname
 https://www.cnblogs.com/jianyungsun/archive/2011/02/14/1954057.html
 
 
 ## 类之间跳转 ]] or [[
+
 ## 方法跳转   ]m or [m
 
 - `gd`                       " go to the definition of the function
 
-## easy motion <leader><leader>f or <leader><leader>w
+## easy motion \<leader\>\<leader\>f or \<leader\>\<leader\>w
 refer to https://github.com/VSCodeVim/Vim for easy-motion
