@@ -1,0 +1,46 @@
+# VIM 如何进行分屏操作
+
+- `:split`                  " 缩写 `:sp` or `Ctrl-w s` 同一个文件上下分屏
+- `:vsplit`                 " 缩写 `:vs` or `Ctrl-w v` 同一个文件左右分屏
+- `:diffsplit`              " 缩写 `:diffs` diff 模式打开一个分屏，后面可以加上 {filename}
+
+- `Ctrl-w w`                " 激活下一个窗口
+- `Ctrl-w j`                " 激活下方窗口
+- `Ctrl-w k`                " 激活上方窗口
+- `Ctrl-w h`                " 激活左侧窗口
+- `Ctrl-w l`                " 激活右侧窗口
+- `Ctrl-w x`                " 对调左右或上下两个对应的窗口
+
+- `Ctrl-w L`                " 移动到最右侧
+- `Ctrl-w H`                " 移动到最左侧
+- `Ctrl-w K`                " 移动到顶部
+- `Ctrl-w J`                " 移动到底部
+
+- `Ctrl-w =`                " 平均窗口尺寸
+- `Ctrl-w +`                " 增加高度
+- `Ctrl-w -`                " 缩减高度
+- `Ctrl-w _`                " 最大高度
+- `Ctrl-w >`                " 增加宽度
+- `Ctrl-w <`                " 缩减宽度
+- `Ctrl-w |`                " 最大宽度
+- `Ctrl-w c`                " 上面的这个命令也是关闭当前的分屏
+- `Ctrl-w q`                " 上面的这个命令也是关闭当前的分屏，如果是最后一个分屏将会退出 VIM 
+
+
+===============================================
+
+# 标签页
+- `:tabnew`, `:tabedit`     " 缩写 `:tabe` 打开新标签页
+- `Ctrl-w gf`               " 在新标签页中打开当前光标所在位置的文件名
+- `gt`, `:tabnext`          " 缩写 `:tabn` 下一个标签页（最后一个会循环到第一个）
+- `gT`, `:tabprevious`      " 缩写 `:tabp` 上一个标签页（第一个会循环到最后一个）
+- `:tabrewind`              " 缩写 `:tabr` or `:tabfirst` 缩写 `:tabfir` 到第一个
+- `:tablast`                " 缩写 `:tabl` 到最后一个标签页
+- `:tabclose`               " 缩写 `:tabc` 关闭当前标签页
+- `:-tabc`                  " 关闭上一个标签页
+- `:+tabc`                  " 关闭下一个标签页
+- `:tabonly`                " 缩写 `:tabo` 关闭其他标签页
+
+
+Ref
+https://xu3352.github.io/linux/2018/10/21/practical-vim-skills-chapter-5
