@@ -43,9 +43,19 @@
 - `Ctrl+f`                   " 上一页
 - `Ctrl+b`                   " 下一页
 
-## 快速跳转
+## 快速跳转 jumplist & changelist
+jumplist
 - `Ctrl+o`                   " 快速返回到上一次的位置
 - `Ctrl+i`                   " 快速返回到下一次的位置
+- `:jumps                    " Cycle through Ctrl + o or Ctrl + i
+
+changelist
+- `g;                       " 要想跳到上次文档中被更改的地方，它会跳到上次完成编辑时光标所在行及列上，
+                              其结果与按下`u<C-r>`类似，只不过它不会对文档造成暂态的改变
+- `g,
+- `:changes                 " Cycle through g;, g,
+
+
 
 ## 设置marks实现跳转
 - `m{a-zA-Z}`                " 设置标签 a-z在同一个文件之内，A-Z在不同文件之间
