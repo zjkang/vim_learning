@@ -1,0 +1,36 @@
+plugin
+
+:source ~/.vimrc
+
+PlugInstall
+- vim管理:        " https://github.com/junegunn/vim-plug
+- 启动插件:       " https://github.com/mhinz/vim-startify
+- 命令行插件:     " https://github.com/vim-airline/vim-airline
+- 缩进线:        " https://github.com/Yggdroot/indentLine
+- 配色方案:      " https://github.com/sickill/vim-monokai
+- 搜索快速定位:   " https://github.com/easymotion/vim-easymotion
+- 文件目录:      " https://github.com/scrooloose/nerdtree
+- 文件搜索:      " https://github.com/ctrlpvim/ctrlp.vim
+
+- 添加surround   " https://github.com/tpope/vim-surround
+  normal: 
+  ds: delete surround {ds <existing char>}, e.g., "test" -> ds"-> test
+  cs: change surround {cs <existing char> <desired char>}, e.g., "test" -> cs"' -> 'test' ... cs"t 123> -> <123>test</123>
+  ys: you add surround: {ys <motion> <desired char>},e.g., test -> ys iw" -> "test"
+
+- 模糊搜索与替换   " https://github.com/junegunn/fzf.vim
+  :??? Ag [PATTERN] 模糊搜索字符串
+  :Files [PATH] 模糊搜索目录
+
+- 代码注释:      " https://github.com/tpope/vim-commentary
+  单行注释:gc,取消单行注释gcgc; 
+  多行注释及取消: V selection -> gc
+  
+- vs code vim
+https://github.com/VSCodeVim/Vim
+
+1. 使用easy-motion, <leader><leader>s<char>
+2. 使用gb -> multi-cursor use <esc> to switch mode, <ctrl>+c to jump
+   使用gh -> find definition and error report
+   使用gd -> function definition
+   
