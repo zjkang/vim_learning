@@ -10,6 +10,7 @@
 - replace 模式 (r/R)
 
 normal模式切换到insert模式: gi到最后编辑的位置
+
 insert模式切换到normal模式: ESC, ctrl+c, ctrl+[
 
 约定
