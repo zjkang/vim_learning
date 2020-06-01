@@ -75,6 +75,7 @@ https://www.cnblogs.com/jianyungsun/archive/2011/02/14/1954057.html
 ## 方法跳转   ]m or [m
 
 - `gd`                       " go to the definition of the local declaration or function
+- `gf`                       " go to the path with file path
 
 ## easy motion \<leader\>\<leader\>f or \<leader\>\<leader\>w
 refer to https://github.com/VSCodeVim/Vim for easy-motion
